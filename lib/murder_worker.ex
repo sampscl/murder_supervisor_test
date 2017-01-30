@@ -25,7 +25,7 @@ defmodule Murder.Worker do
   ##############################
 
   def init([n]) do
-    pp = PorcelainUtils.spawn_shell("tshark", "murder_worker_#{n}", :KILL)
+    pp = PorcelainUtils.spawn_shell("sleep 10s", "murder_worker_#{n}", :KILL)
     state = %State{porcelain_process: pp, n: n}
     Logger.info("state is #{inspect(state)}")
     Process.send_after(self(), :murder, 5_000)
